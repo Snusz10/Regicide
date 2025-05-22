@@ -15,7 +15,6 @@
 
 using CodePulse.API.Data;
 using CodePulse.API.Models;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -61,7 +60,7 @@ builder.Services.Configure<IdentityOptions>(options => {
 });
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options => { 
+    .AddJwtBearer(options => {
         options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters {
             AuthenticationType = "Jwt",
             ValidateIssuer = true,
@@ -93,8 +92,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseStaticFiles(new StaticFileOptions {
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Images")),
-    RequestPath = "/Images"
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
+    RequestPath = "/Resources"
 });
 
 app.MapControllers();
